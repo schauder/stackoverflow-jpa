@@ -9,9 +9,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
 
+
+//https://stackoverflow.com/q/47758953/66686
 @RunWith(SpringRunner.class)
 @SpringBootTest
-
 public class ConverterTest {
 
 	@Autowired
@@ -20,7 +21,7 @@ public class ConverterTest {
 	@Autowired
 	PersonRepository repository;
 
-	@Test
+	@Test(expected = ClassCastException.class)
 	public void contextLoads() {
 
 		template.execute("INSERT INTO withBigInt VALUES (23)");
