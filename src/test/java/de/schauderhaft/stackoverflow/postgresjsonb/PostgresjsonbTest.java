@@ -24,6 +24,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureJdbc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -50,9 +51,20 @@ public class PostgresjsonbTest {
 	JdbcTemplate template;
 
 
-	@Test
-	public void test() {
+	@Test(expected = DataIntegrityViolationException.class)
+	public void straightJdbcTemplateJsonbInternalParameter() {
 
+		String sql = "SELECT * FROM thgcop_order_placement WHERE \"order_info\" @> '{\"parentOrderNumber\":\" :param \"}'";
+
+		template.queryForObject(sql, new String[]{"value"}, String.class);
+	}
+
+	@Test(expected = DataIntegrityViolationException.class)
+	public void straightJdbcTemplateFullJsonb() {
+
+		String sql = "SELECT * FROM thgcop_order_placement WHERE \"order_info\" @> :param";
+
+		template.queryForObject(sql, new String[]{"value"}, String.class);
 	}
 
 	@Configuration
