@@ -59,6 +59,15 @@ public class PostgresjsonbTest {
 		template.queryForObject(sql, new String[]{"value"}, String.class);
 	}
 
+
+	@Test(expected = DataIntegrityViolationException.class)
+	public void straightJdbcTemplateJsonbInternalParameterNumericNoQuotes() {
+
+		String sql = "SELECT * FROM thgcop_order_placement WHERE \"order_info\" @> '{\"parentOrderNumber\": ?1}'";
+
+		template.queryForObject(sql, new String[]{"value"}, String.class);
+	}
+
 	@Test(expected = DataIntegrityViolationException.class)
 	public void straightJdbcTemplateFullJsonb() {
 
