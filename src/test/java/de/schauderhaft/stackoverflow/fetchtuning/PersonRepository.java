@@ -13,24 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.schauderhaft.stackoverflow.intuple;
+package de.schauderhaft.stackoverflow.fetchtuning;
 
-import lombok.Data;
+import org.springframework.data.repository.CrudRepository;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import java.util.List;
 
 /**
  * @author Jens Schauder
  */
-@Data
-@Entity(name = "TuplePerson")
-public class Person {
+public interface PersonRepository extends CrudRepository<Person, Long> {
 
-	@Id
-	private Long id;
-
-	private String first;
-
-	private String last;
+	List<Person> findByName(String name);
 }

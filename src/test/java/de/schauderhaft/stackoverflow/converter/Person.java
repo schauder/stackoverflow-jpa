@@ -24,7 +24,7 @@ import javax.persistence.Id;
  * @author Jens Schauder
  */
 @Data
-@Entity
+@Entity(name="ConverterPerson")
 public class Person {
 	@Id
 	private Long id;

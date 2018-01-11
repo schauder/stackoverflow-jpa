@@ -13,24 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.schauderhaft.stackoverflow.intuple;
+package de.schauderhaft.stackoverflow.fetchtuning;
 
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  * @author Jens Schauder
  */
 @Data
-@Entity(name = "TuplePerson")
-public class Person {
+@Entity
+public class Role {
 
 	@Id
 	private Long id;
 
-	private String first;
-
-	private String last;
+	private String name;
 }
