@@ -15,6 +15,7 @@
  */
 package de.schauderhaft.stackoverflow.fetchtuning;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -25,4 +26,7 @@ import java.util.List;
 public interface PersonRepository extends CrudRepository<Person, Long> {
 
 	List<Person> findByName(String name);
+
+	@EntityGraph("joined")
+	List<Person> findTunedByName(String name);
 }

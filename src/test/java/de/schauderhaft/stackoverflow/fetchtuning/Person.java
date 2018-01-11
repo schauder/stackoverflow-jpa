@@ -23,6 +23,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToOne;
 
 /**
@@ -30,6 +31,7 @@ import javax.persistence.OneToOne;
  */
 @Data
 @Entity(name = "FetchPerson")
+@NamedEntityGraph(name = "joined", includeAllAttributes = true)
 public class Person {
 	@Id
 	private Long id;

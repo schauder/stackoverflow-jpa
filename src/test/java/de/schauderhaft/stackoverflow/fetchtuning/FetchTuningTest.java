@@ -77,10 +77,19 @@ public class FetchTuningTest {
 	@Test
 	public void findByName() {
 
-		System.out.println("---------- before findOne --------------");
+		System.out.println("---------- before findByName --------------");
 		Person one = repository.findByName("Carl").get(0);
 		System.out.println(one.getRole().getName());
-		System.out.println("---------- after findOne --------------");
+		System.out.println("---------- after findByName --------------");
+
+	}
+	@Test
+	public void findTunedByName() {
+
+		System.out.println("---------- before findTunedByName --------------");
+		Person one = repository.findTunedByName("Carl").get(0);
+		System.out.println(one.getRole().getName());
+		System.out.println("---------- after findTunedByName --------------");
 
 	}
 
